@@ -1,5 +1,115 @@
 <footer class="site-footer">
     <div class="container">
+        <?php
+        if (   is_active_sidebar( 'first-footer-widget-area'  )
+        && is_active_sidebar( 'second-footer-widget-area' )
+        && is_active_sidebar( 'third-footer-widget-area'  )
+        && is_active_sidebar( 'fourth-footer-widget-area' )
+        ) {
+            ?>
+            <div class="row">
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'first-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'second-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'third-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?>
+                    <small>&copy; 2016</small>
+                </div>
+            </div>
+            <?php
+        }elseif (is_active_sidebar( 'first-footer-widget-area'  )
+            && is_active_sidebar( 'second-footer-widget-area' )
+            && is_active_sidebar( 'third-footer-widget-area'  )
+            && ! is_active_sidebar( 'fourth-footer-widget-area' )){
+            ?>
+            <div class="row">
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'first-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'second-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'third-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <div class="socials">
+                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
+                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
+                        <a class="linkedin" target="_blank"
+                           href="https://www.linkedin.com/company/norse-corporation"></a>
+                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
+                    </div>
+                    <small>&copy; 2016</small>
+                </div>
+            </div>
+            <?php
+        }elseif (is_active_sidebar( 'first-footer-widget-area'  )
+            && is_active_sidebar( 'second-footer-widget-area' )
+            && ! is_active_sidebar( 'third-footer-widget-area'  )
+            && ! is_active_sidebar( 'fourth-footer-widget-area' )){
+            ?>
+            <div class="row">
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'first-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'second-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+<!--                    --><?php //dynamic_sidebar( 'third-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <div class="socials">
+                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
+                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
+                        <a class="linkedin" target="_blank"
+                           href="https://www.linkedin.com/company/norse-corporation"></a>
+                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
+                    </div>
+                    <small>&copy; 2016</small>
+                </div>
+            </div>
+            <?php
+        }elseif (is_active_sidebar( 'first-footer-widget-area'  )
+            && ! is_active_sidebar( 'second-footer-widget-area' )
+            && ! is_active_sidebar( 'third-footer-widget-area'  )
+            && ! is_active_sidebar( 'fourth-footer-widget-area' )
+        ){
+            ?>
+            <div class="row">
+                <div class="col-sm-3">
+                    <?php dynamic_sidebar( 'first-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+<!--                    --><?php //dynamic_sidebar( 'second-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+<!--                    --><?php //dynamic_sidebar( 'third-footer-widget-area' ); ?>
+                </div>
+                <div class="col-sm-3">
+                    <div class="socials">
+                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
+                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
+                        <a class="linkedin" target="_blank"
+                           href="https://www.linkedin.com/company/norse-corporation"></a>
+                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
+                    </div>
+                    <small>&copy; 2016</small>
+                </div>
+            </div>
+            <?php
+        }else{ ?>
+        ?>
         <div class="row">
             <div class="col-sm-3">
                 <h3>About</h3>
@@ -67,6 +177,7 @@
                 <small>&copy; 2016</small>
             </div>
         </div>
+        <?php } ?>
     </div>
 </footer>
 </section>

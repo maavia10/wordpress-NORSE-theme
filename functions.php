@@ -165,39 +165,56 @@ add_action( 'after_setup_theme', 'twentysixteen_content_width', 0 );
  *
  * @since Twenty Sixteen 1.0
  */
-function twentysixteen_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'twentysixteen' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar.', 'twentysixteen' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+function tutsplus_widgets_init() {
 
-	register_sidebar( array(
-		'name'          => __( 'Content Bottom 1', 'twentysixteen' ),
-		'id'            => 'sidebar-2',
-		'description'   => __( 'Appears at the bottom of the content on posts and pages.', 'twentysixteen' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+    // First footer widget area, located in the footer. Empty by default.
+    register_sidebar( array(
+        'name' => __( 'First Footer Widget Area', 'tutsplus' ),
+        'id' => 'first-footer-widget-area',
+        'description' => __( 'The first footer widget area', 'tutsplus' ),
+        'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
 
-	register_sidebar( array(
-		'name'          => __( 'Content Bottom 2', 'twentysixteen' ),
-		'id'            => 'sidebar-3',
-		'description'   => __( 'Appears at the bottom of the content on posts and pages.', 'twentysixteen' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+    // Second Footer Widget Area, located in the footer. Empty by default.
+    register_sidebar( array(
+        'name' => __( 'Second Footer Widget Area', 'tutsplus' ),
+        'id' => 'second-footer-widget-area',
+        'description' => __( 'The second footer widget area', 'tutsplus' ),
+        'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
+
+    // Third Footer Widget Area, located in the footer. Empty by default.
+    register_sidebar( array(
+        'name' => __( 'Third Footer Widget Area', 'tutsplus' ),
+        'id' => 'third-footer-widget-area',
+        'description' => __( 'The third footer widget area', 'tutsplus' ),
+        'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
+
+    // Fourth Footer Widget Area, located in the footer. Empty by default.
+    register_sidebar( array(
+        'name' => __( 'Fourth Footer Widget Area', 'tutsplus' ),
+        'id' => 'fourth-footer-widget-area',
+        'description' => __( 'The fourth footer widget area', 'tutsplus' ),
+        'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
+
 }
-add_action( 'widgets_init', 'twentysixteen_widgets_init' );
 
+// Register sidebars by running tutsplus_widgets_init() on the widgets_init hook.
+add_action( 'widgets_init', 'tutsplus_widgets_init' );
 if ( ! function_exists( 'twentysixteen_fonts_url' ) ) :
 /**
  * Register Google fonts for Twenty Sixteen.
