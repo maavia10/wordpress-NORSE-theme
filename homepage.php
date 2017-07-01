@@ -1,5 +1,19 @@
 <?php
 /* Template Name: Homepage */
+$headerData=get_field('header_first_sections');
+$headerData=$headerData[0];
+$leftHeaderButton=$headerData['left_button'][0];
+$rightHeaderButton=$headerData['right_button'][0];
+$whatWeDoSection=get_field('what_we_do');
+//var_dump($whatWeDoSection[0]);die;
+$whatWeDoSection=$whatWeDoSection[0];
+$container=$whatWeDoSection['containers'];
+$financialWrapper=get_field('financial-wrapper');
+$phishingWrapper=get_field('phishing-wrapper');
+$cyberTheardWrapper=get_field('cyber-threat-wrapper');
+$errorReportingWrapper=get_field('error-reporting-wrapper');
+$blackListWrapper=get_field('blacklist-wrapper');
+$threatMappingWrapper=get_field('threat-mapping-wrapper');
 get_header('homepage');
 ?>
 
@@ -29,30 +43,89 @@ get_header('homepage');
 </div>
 <div class="main">
     <section id="home" class="section-container"><!-- video  -->
+        <?php
+        if($headerData['backgroud_image']){
+            ?>
+            <video autoplay loop poster="<?php echo esc_url( get_template_directory_uri() ); ?>/img/hmpg_bg.jpg" id="bgvid">
+                <source src="<?php echo $headerData['backgroud_image']; ?>" type="video/mp4"></source>
+            </video>
+            <?php
+        }else{
+        ?>
         <video autoplay loop poster="<?php echo esc_url( get_template_directory_uri() ); ?>/img/hmpg_bg.jpg" id="bgvid">
             <source src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/norse-home.webm" type="video/webm"></source>
             <source src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/norse-home.mp4" type="video/mp4"></source>
             <source src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/norse-home.ogv" type="video/ogg" media=""></source>
         </video>
+        <?php
+        }
+        ?>
         <div class="container main-header">
             <div class="hero-cta">
                 <div class="row">
                     <div class="col-sm-12">
                         <!-- <div class="logo-mark"></div> -->
+                        <?php
+                        if($headerData['header_text'] != ''){
+                        ?>
+                            <h1 class="main-copy-hero">
+                                <?php echo $headerData['header_text']; ?>
+                            </h1>
+                            <?php
+                        }else{
+                        ?>
                         <h1 class="main-copy-hero">
                             real-time visibility into global cyber attacks
                         </h1>
+                            <?php
+                        }
+                        if($headerData['sub_headinng_text'] != ""){
+                        ?>
+                            <p class="main-copy-sub">
+                                <?php
+                                echo $headerData['sub_headinng_text'];
+                                ?>
+                            </p>
+                            <?php
+                        }else{
+                        ?>
                         <p class="main-copy-sub">
                             from the world's largest dedicated threat intelligence network
                         </p>
+                            <?php }?>
                     </div>
                 </div>
                 <div class="row main-button-section">
                     <div class="col-sm-12">
                         <div class="hero-buttons">
+                            <?php
+                            if($leftHeaderButton['text']!=""){
+                            $url="javscript:void(0);";
+                                if($leftHeaderButton['url']!=""){
+                                $url=$leftHeaderButton['url'];
+                            }
+                                ?>
+                                <a class="map-button button-override" target="_blank" href="<?php echo $url;?>"><?php echo $leftHeaderButton['text']; ?></a>
+                                <?php
+                            }else{
+                            ?>
                             <a class="map-button button-override" target="_blank" href="http://map.norsecorp.com/">Live
                                 Attacks</a>
-                            <a class="map-button button-override contact-scroll" href="#">GET NORSE</a>
+                                <?php  } ?>
+                            <?php
+                            if($rightHeaderButton['text']!=""){
+                                $url="javscript:void(0);";
+                                if($rightHeaderButton['url']!=""){
+                                    $url=$rightHeaderButton['url'];
+                                }
+                                ?>
+                                <a class="map-button button-override contact-scroll" target="_blank" href="<?php echo $url;?>"><?php echo $rightHeaderButton['text']; ?></a>
+                                <?php
+                            }else{
+                                ?>
+                                <a class="map-button button-override contact-scroll" href="#">GET NORSE</a>
+                            <?php  } ?>
+
                         </div>
                     </div>
                 </div>
@@ -74,90 +147,262 @@ get_header('homepage');
             <div class="row factoid-top factoid-row">
                 <div class="col-sm-12 factoid-info-center visible-xs" id="center-title-mobile">
                     <div id="factoid-title-mobile">
+                        <?php
+                        if($whatWeDoSection['main_text'] != ""){
+                            ?>
+                            <h2><?php echo $whatWeDoSection['main_text']; ?></h2>
+                            <?php
+                        }else{
+                        ?>
                         <h2>what we do</h2>
+                        <?php
+                        }
+                            ?>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div id="factoid-info-7" class="fact text-right">
-                        <h3 class="ft fact-title-7 pulse7">
-                            47 Countries
-                        </h3>
+                        <?php
+                        $dataCircle=$container[0];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-7 pulse7">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-7 pulse7">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                        ?>
+                            <p class="factoid-content" id="factoid-content-7">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                        ?>
+
                         <p class="factoid-content" id="factoid-content-7">
                             Norse Operates In 47 Countries Around The Globe
-                        </p>
+                        </p><?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-5 col-sm-offset-2">
                     <div id="factoid-info-1" class="fact text-left">
-                        <h3 class="ft fact-title-1 pulse1">
-                            1,500
-                        </h3>
-                        <p class="factoid-content" id="factoid-content-1">
-                            Norse weighs more than 1,500 actuarial variables in risk score
-                            calculations for every IP address, and resources more than 1M addresses
-                            every day.
-                        </p>
+                        <?php
+                        $dataCircle=$container[1];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-1 pulse1">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-1 pulse1">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-1">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-1">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
             </div>
             <div class="row factoid-middle factoid-row">
                 <div class="col-sm-4">
                     <div id="factoid-info-6" class="fact text-right">
-                        <h3 class="ft fact-title-6 pulse6">
-                            16,000,000
-                        </h3>
-                        <p class="factoid-content" id="factoid-content-6">
-                            Norse operates as a tier-1 carrier, controlling more than
-                            16 million ipv4 addresses and operating 6 autonomous systems worldwide
-                        </p>
+                        <?php
+                        $dataCircle=$container[2];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-6 pulse6">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-6 pulse6">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-6">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-6">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-4 col-sm-offset-4">
                     <div id="factoid-info-2" class="fact text-left">
-                        <h3 class="ft fact-title-2 pulse2">
-                            6,000
-                        </h3>
-                        <p class="factoid-content" id="factoid-content-2">
-                            Norse sensors and honeypots can emulate more than 6,000 commonly-attacked devices and
-                            applications.
-                        </p>
+                        <?php
+                        $dataCircle=$container[3];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-2 pulse2">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-2 pulse2">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-2">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-2">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
             </div>
             <div class="row factoid-bottom factoid-row">
                 <div class="col-sm-4">
                     <div id="factoid-info-5" class="fact text-right">
-                        <h3 class="ft fact-title-5 pulse5">
-                            8,000,000 SENSORS
-                        </h3>
-                        <p class="factoid-content" id="factoid-content-5">
-                            Norse receives instant attack telemetry from more than 8 million sensors
-                            deployed everywhere in the world.
-                        </p>
+
+                        <?php
+                        $dataCircle=$container[4];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-5 pulse5">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-5 pulse5">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-5">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-5">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div id="factoid-info-4" class="fact text-center">
-                        <h3 class="ft fact-title-4 pulse4">200,000 TOR NODES</h3>
-                        <p class="factoid-content" id="factoid-content-4">
-                            Norse Tracks more than 200,000 tor exit nodes: that's
-                            five times more than any other intelligence source
-                        </p>
+                        <?php
+                        $dataCircle=$container[5];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-4 pulse4">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-4 pulse4">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-4">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-4">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-4">
                     <div id="factoid-info-3" class="fact text-left">
-                        <h3 class="ft fact-title-3 pulse3">7 PETABYTES</h3>
-                        <p class="factoid-content" id="factoid-content-3">
-                            Norse&rsquo;s operates the world&rsquo;s largest commercial attack intelligence
-                            database, with more than 7 Petabytes of detailed attack histories.
-                        </p>
+                        <?php
+                        $dataCircle=$container[6];
+                        if($dataCircle['heading']!=""){
+                            ?>
+                            <h3 class="ft fact-title-3 pulse3">
+                                <?php echo $dataCircle['heading'];?>
+                            </h3>
+                            <?php
+                        }else {
+                            ?>
+
+                            <h3 class="ft fact-title-3 pulse3">
+                                47 Countries
+                            </h3>
+                            <?php
+                        }
+                        if($dataCircle['sub_heading']!=""){
+                            ?>
+                            <p class="factoid-content" id="factoid-content-3">
+                                <?php echo $dataCircle['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+
+                            <p class="factoid-content" id="factoid-content-3">
+                                Norse Operates In 47 Countries Around The Globe
+                            </p><?php } ?>
                     </div>
                 </div>
             </div>
             <div class="hidden-xs" id="center-title">
                 <div id="factoid-title">
-                    <h2>what we do</h2>
+                    <?php
+                    if($whatWeDoSection['main_text'] != ""){
+                        ?>
+                        <h2><?php echo $whatWeDoSection['main_text']; ?></h2>
+                        <?php
+                    }else{
+                        ?>
+                        <h2>what we do</h2>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
             <!-- CIRCLE NAV -->
@@ -179,6 +424,10 @@ get_header('homepage');
         </div>
 
         <div class="container" id="main-timeline">
+            <?php
+
+
+            ?>
             <div class="timeline-wrapper" id="financial-wrapper">
                 <div class="sonar-wrapper" id="financial-sonar">
                     <div class="sonar-emitter">
@@ -187,12 +436,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="financial-content">
                     <div class="content-wrapper-inner" id="financial-content-inner">
+                        <?php
+                        if($financialWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $financialWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                        ?>
                         <h3 class="content-inner-title" id="financial-title">Offloading</h3>
-                        <p>
+                            <?php }
+                            if($financialWrapper[0]['sub_heading']!=""){
+                            ?>
+                                <p>
+                                <?php echo $financialWrapper[0]['sub_heading']; ?>
+                                </p>
+                                <?php
+                            }else{
+                            ?>
+                            <p>
                             Major financial institutions offload expensive firewalls by preemptively refusing
                             connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
                             Internet &ndash; a list refreshed every five seconds.
                         </p>
+                                <?php
+                            } ?>
                     </div>
                 </div>
             </div>
@@ -205,13 +472,36 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="phishing-content">
                     <div class="content-wrapper-inner" id="phishing-content-inner">
-                        <h3 class="content-inner-title" id="phishing-title">Phoil Phishing</h3>
+                        <?php if($phishingWrapper[0]['heading']){
+                            ?>
+                            <h3 class="content-inner-title" id="phishing-title"><?php echo $phishingWrapper[0]['heading']; ?></h3>
+
+                            <?php
+                        }else {
+                            ?>
+                            <h3 class="content-inner-title" id="phishing-title">Phoil Phishing</h3>
+                            <?php
+                        }
+                        ?>
+                        <?php
+if($phishingWrapper[0]['sub_heading']){
+    ?>
+    <p>
+        <?php
+        echo $phishingWrapper[0]['sub_heading'];
+        ?>
+    </p>
+    <?php
+}else{
+    ?>
+
                         <p>
                             Large banking organizations prevent na&iuml;ve employees from infecting their whole
                             infrastructure by intercepting clicks on phishing emails and redirecting outbound
                             connections &ndash; that otherwise would have gone to malicious servers -- towards landing
                             pages that reinforce more cautious behaviors.
                         </p>
+    <?php }?>
                     </div>
                 </div>
             </div>
@@ -224,13 +514,29 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="cyber-threat-content">
                     <div class="content-wrapper-inner" id="cyber-threat-content-inner">
+                        <?php if($cyberTheardWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title"><?php echo $cyberTheardWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{?>
                         <h3 class="content-inner-title">Outsource Monitoring</h3>
+                        <?php }
+                        if($cyberTheardWrapper[0]['sub_heading']){
+                            ?>
+                            <p>
+                                <?php
+                                echo $cyberTheardWrapper[0]['sub_heading'];
+                                ?>
+                            </p>
+                            <?php
+                        }else{?>
                         <p>
                             Global multi-enterprise networks depend on Norse continuous threat monitoring to patrol
                             their networks and darknet sites around the world, looking for stolen credit card numbers,
                             electronic health records and sensitive emails. Norse telemetry helps enterprises and law
                             enforcement identify and prosecute cyber criminals worldwide.
                         </p>
+                            <?php } ?>
                     </div>
                 </div>
             </div>
@@ -243,12 +549,27 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="error-reporting-content">
                     <div class="content-wrapper-inner" id="error-reporting-content-inner">
+                        <?php  if($errorReportingWrapper[0]['heading']){
+                            ?>
+                            <h3 class="content-inner-title"><?php echo $errorReportingWrapper[0]['heading'];  ?></h3>
+                            <?php
+                        }else{?>
                         <h3 class="content-inner-title">Breach-In-Progress</h3>
+                        <?php }if($errorReportingWrapper[0]['sub_heading']){
+                            ?>
+                            <p>
+                                <?php
+                                echo $errorReportingWrapper[0]['sub_heading'];
+                                ?>
+                            </p>
+                            <?php
+                        }else{ ?>
                         <p>
                             Overwhelmed government agencies intelligently filter thousands of daily security events from
                             their existing SIEMs through automated Norse filters to identify and stop the most serious
                             breaches -- while they&rsquo;re still in-progress.
                         </p>
+    <?php }?>
                     </div>
                 </div>
             </div>
@@ -261,12 +582,28 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="blacklist-content">
                     <div class="content-wrapper-inner" id="blacklist-content-inner">
+                        <?php
+                        if($blackListWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title"><?php echo $blackListWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                        ?>
                         <h3 class="content-inner-title">Instant Checks</h3>
-                        <p>
+                        <?php }if($blackListWrapper[0]['sub_heading']){
+
+           ?>
+                            <p>
+                                <?php echo $blackListWrapper[0]['sub_heading'];?>
+                            </p>
+                            <?php
+                        }else{ ?>
+                            <p>
                             Fast-growing tech companies give their SOC analysts &lsquo;Norse superpowers&rsquo; to
                             perform instant background checks and dig up detailed attack records on virtually any IP or
                             URL in the world, from our 7-petabyte attack history database.
                         </p>
+    <?php } ?>
                     </div>
                 </div>
             </div>
@@ -279,12 +616,29 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper" id="threat-mapping-content">
                     <div class="content-wrapper-inner" id="threat-mapping-content-inner">
+                        <?php
+                        if($threatMappingWrapper[0]['heading']){
+                            ?>
+                            <h3 class="content-inner-title"><?php echo $threatMappingWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                        ?>
                         <h3 class="content-inner-title">Catch More</h3>
-                        <p>
+                        <?php }if($threatMappingWrapper[0]['sub_heading']){
+                          ?>
+                            <p>
+                                <?php
+                                echo $threatMappingWrapper[0]['sub_heading'];
+                                ?>
+                            </p>
+                            <?php
+                        }else{ ?>
+                            <p>
                             Sophisticated technology customers use Norse to isolate totally new attack vectors their
                             current systems miss, by installing Norse attack intelligence behind their existing
                             firewalls and IPS&rsquo;s.
                         </p>
+                    <?php } ?>
                     </div>
                 </div>
             </div>
@@ -299,12 +653,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="financial-mobile-content">
                     <div class="content-wrapper-inner" id="financial-content-inner">
-                        <h3 class="content-inner-title" id="financial-title">Offloading</h3>
-                        <p>
-                            Major financial institutions offload expensive firewalls by preemptively refusing
-                            connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
-                            Internet &ndash; a list refreshed every five seconds.
-                        </p>
+                        <?php
+                        if($financialWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $financialWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($financialWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $financialWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -315,13 +687,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="phishing-mobile-content">
                     <div class="content-wrapper-inner" id="phishing-content-inner">
-                        <h3 class="content-inner-title" id="phishing-title">Phoil Phishing</h3>
-                        <p>
-                            Large banking organizations prevent na&iuml;ve employees from infecting their whole
-                            infrastructure by intercepting clicks on phishing emails and redirecting outbound
-                            connections &ndash; that otherwise would have gone to malicious servers -- towards landing
-                            pages that reinforce more cautious behaviors.
-                        </p>
+                        <?php
+                        if($phishingWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $phishingWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($phishingWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $phishingWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -332,13 +721,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="cyber-threat-mobile-content">
                     <div class="content-wrapper-inner" id="cyber-threat-content-inner">
-                        <h3 class="content-inner-title">Outsource Monitoring</h3>
-                        <p>
-                            Global multi-enterprise networks depend on Norse continuous threat monitoring to patrol
-                            their networks and darknet sites around the world, looking for stolen credit card numbers,
-                            electronic health records and sensitive emails. Norse telemetry helps enterprises and law
-                            enforcement identify and prosecute cyber criminals worldwide.
-                        </p>
+                        <?php
+                        if($cyberTheardWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $cyberTheardWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($cyberTheardWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $cyberTheardWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -349,12 +755,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="error-reporting-mobile-content">
                     <div class="content-wrapper-inner" id="error-reporting-content-inner">
-                        <h3 class="content-inner-title">Breach-In-Progress</h3>
-                        <p>
-                            Overwhelmed government agencies intelligently filter thousands of daily security events from
-                            their existing SIEMs through automated Norse filters to identify and stop the most serious
-                            breaches -- while they&rsquo;re still in-progress.
-                        </p>
+                        <?php
+                        if($errorReportingWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $errorReportingWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($errorReportingWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $errorReportingWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -365,12 +789,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="blacklist-mobile-content">
                     <div class="content-wrapper-inner" id="blacklist-content-inner">
-                        <h3 class="content-inner-title">Instant Checks</h3>
-                        <p>
-                            Fast-growing tech companies give their SOC analysts &lsquo;Norse superpowers&rsquo; to
-                            perform instant background checks and dig up detailed attack records on virtually any IP or
-                            URL in the world, from our 7-petabyte attack history database.
-                        </p>
+                        <?php
+                        if($blackListWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $blackListWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($blackListWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $blackListWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -381,12 +823,30 @@ get_header('homepage');
                 </div>
                 <div class="content-wrapper-mobile" id="threat-mapping-mobile-content">
                     <div class="content-wrapper-inner" id="threat-mapping-content-inner">
-                        <h3 class="content-inner-title">Catch More</h3>
-                        <p>
-                            Sophisticated technology customers use Norse to isolate totally new attack vectors their
-                            current systems miss, by installing Norse attack intelligence behind their existing
-                            firewalls and IPS&rsquo;s.
-                        </p>
+                        <?php
+                        if($threatMappingWrapper[0]['heading']!=""){
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title"><?php echo $threatMappingWrapper[0]['heading']; ?></h3>
+                            <?php
+                        }else{
+                            ?>
+                            <h3 class="content-inner-title" id="financial-title">Offloading</h3>
+                        <?php }
+                        if($threatMappingWrapper[0]['sub_heading']!=""){
+                            ?>
+                            <p>
+                                <?php echo $threatMappingWrapper[0]['sub_heading']; ?>
+                            </p>
+                            <?php
+                        }else{
+                            ?>
+                            <p>
+                                Major financial institutions offload expensive firewalls by preemptively refusing
+                                connections from Norse&rsquo;s list of the 5 million most dangerous addresses on the
+                                Internet &ndash; a list refreshed every five seconds.
+                            </p>
+                            <?php
+                        } ?>
                     </div>
                 </div>
                 <div class="timeline-circle last" id="financial-circle">
