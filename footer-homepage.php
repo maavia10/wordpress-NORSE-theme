@@ -109,7 +109,6 @@
             </div>
             <?php
         }else{ ?>
-        ?>
         <div class="row">
             <div class="col-sm-3">
                 <h3>About</h3>
