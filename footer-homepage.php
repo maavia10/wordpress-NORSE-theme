@@ -39,14 +39,6 @@
                     <?php dynamic_sidebar( 'third-footer-widget-area' ); ?>
                 </div>
                 <div class="col-sm-3">
-                    <div class="socials">
-                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
-                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
-                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
-                        <a class="linkedin" target="_blank"
-                           href="https://www.linkedin.com/company/norse-corporation"></a>
-                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
-                    </div>
                     <small>&copy; 2016</small>
                 </div>
             </div>
@@ -67,14 +59,7 @@
 <!--                    --><?php //dynamic_sidebar( 'third-footer-widget-area' ); ?>
                 </div>
                 <div class="col-sm-3">
-                    <div class="socials">
-                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
-                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
-                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
-                        <a class="linkedin" target="_blank"
-                           href="https://www.linkedin.com/company/norse-corporation"></a>
-                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
-                    </div>
+
                     <small>&copy; 2016</small>
                 </div>
             </div>
@@ -96,14 +81,7 @@
 <!--                    --><?php //dynamic_sidebar( 'third-footer-widget-area' ); ?>
                 </div>
                 <div class="col-sm-3">
-                    <div class="socials">
-                        <a class="youtube" target="_blank" href="https://www.youtube.com/user/norsecorporation"></a>
-                        <a class="facebook" target="_blank" href="https://www.facebook.com/NorseCorporation"></a>
-                        <a class="twitter" target="_blank" href="https://twitter.com/norsecorp"></a>
-                        <a class="linkedin" target="_blank"
-                           href="https://www.linkedin.com/company/norse-corporation"></a>
-                        <a class="rss" href="http://darkmatters.norsecorp.com/feed/"></a>
-                    </div>
+
                     <small>&copy; 2016</small>
                 </div>
             </div>
