@@ -14,6 +14,20 @@ $cyberTheardWrapper=get_field('cyber-threat-wrapper');
 $errorReportingWrapper=get_field('error-reporting-wrapper');
 $blackListWrapper=get_field('blacklist-wrapper');
 $threatMappingWrapper=get_field('threat-mapping-wrapper');
+$fourthSection=get_field('fouth_section');
+$fourthSection=$fourthSection[0];
+$leftSection=$fourthSection['left_section'][0];
+$rightSection=$fourthSection['right_section'][0];
+$marketData=get_field('market_section');
+$financeData=$marketData[0];
+$govtData=$marketData[1];
+$techData=$marketData[2];
+$secondlast=get_field('second_last_conatiner');
+$leftArea=$secondlast[0];
+$rightArea=$secondlast[1];
+$contactUs=get_field('contact_us');
+//var_dump($leftSection,$rightSection);die;
+//var_dump($leftSection,$rightSection);die;
 get_header('homepage');
 ?>
 
@@ -866,13 +880,34 @@ if($phishingWrapper[0]['sub_heading']){
                 <div class="col-sm-6 products-col appliance">
                     <div class="row appliance-row">
                         <div class="col-sm-12 appliance-content norse-product">
+                            <?php if($leftSection['heading']!=""){
+                                ?>
+                                <h3><?php echo $leftSection['heading'];?></h3>
+                                <?php
+                            }else{?>
                             <h3>NORSE<span class="product-name"> APPLIANCE<sup>&trade;</sup></span></h3>
+                            <?php } ?>
                             <div class="prod-content-fadein">
+                                <?php
+                                if($leftSection['info']){
+                                ?>
+                                    <p class="product-blurb">
+                                        <?php echo $leftSection['info'];?>
+                                    </p>
+                                    <?php
+                                }else{
+                                ?>
                                 <p class="product-blurb">
                                     Your hardline to the Norse Intelligence Network that pre-emptively blocks attacks
                                     and improves your overall security ROI.
                                 </p>
-                                <a class="product-btn button-override" href="products/norse-appliance/index.html">Learn
+                                    <?php }
+                                    $url='javascript:void(0);';
+                                    if($leftSection['link']!=""){
+                                        $url=$leftSection['link'];
+                                    }
+                                    ?>
+                                <a class="product-btn button-override" href="<?php echo $url;?>">Learn
                                     More</a>
                             </div>
                         </div>
@@ -881,14 +916,35 @@ if($phishingWrapper[0]['sub_heading']){
                 <div class="col-sm-6 products-col active intelligence-service">
                     <div class="row intelligence-service-row">
                         <div class="col-sm-12 intelligence-service-content norse-product">
-                            <h3>NORSE<span class="product-name"> Intelligence Service<sup>&trade;</sup></span></h3>
+                            <?php if($rightSection['heading']!=""){
+                                ?>
+                                <h3><?php echo $rightSection['heading'];?></h3>
+                                <?php
+                            }else{?>
+                                <h3>NORSE<span class="product-name"> APPLIANCE<sup>&trade;</sup></span></h3>
+                            <?php } ?>
                             <div class="prod-content-fadein">
-                                <p class="product-blurb">
-                                    Professional 24x7 continuous threat monitoring for large, multi-enterprise networks.
-                                </p>
-                                <a class="product-btn button-override"
-                                   href="#">Learn More</a>
-                            </div>
+                                <?php
+                                if($rightSection['info']){
+                                    ?>
+                                    <p class="product-blurb">
+                                        <?php echo $rightSection['info'];?>
+                                    </p>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <p class="product-blurb">
+                                        Your hardline to the Norse Intelligence Network that pre-emptively blocks attacks
+                                        and improves your overall security ROI.
+                                    </p>
+                                <?php }
+                                $url='javascript:void(0);';
+                                if($rightSection['link']!=""){
+                                    $url=$rightSection['link'];
+                                }
+                                ?>
+                                <a class="product-btn button-override" href="<?php echo $url;?>">Learn
+                                    More</a>
                         </div>
                     </div>
                 </div>
@@ -908,8 +964,21 @@ if($phishingWrapper[0]['sub_heading']){
                     <div class="row solutions-row">
                         <div class="col-sm-12 solution financial-sector" id="financial">
                             <div class="financial-sector-content sector-content">
+                                <?php
+                                if($financeData['heading']!=""){
+                                    ?><h3><?php echo $financeData['heading']; ?></h3><?php
+                                }else{
+                                ?>
                                 <h3>Financial</h3>
+                                <?php } ?>
                                 <div class="solution-content-fadein">
+                                    <?php if($financeData['info']!=""){
+                                    ?>
+                                        <p id="financial-sector-blurb" class="solutions-blurb">
+                                            <?php echo $financeData['info']; ?>&nbsp;
+                                        </p>
+                                        <?php
+                                    }else{ ?>
                                     <p id="financial-sector-blurb" class="solutions-blurb">
                                         Digital attacks cost the typical financial services organization millions every
                                         year. Banks, exchanges, card processors and insurance companies using Norse can
@@ -917,8 +986,12 @@ if($phishingWrapper[0]['sub_heading']){
                                         manage their overall risk. Norse delivers the world&rsquo;s best-defended
                                         financial organizations better returns on their security investment.&nbsp;
                                     </p>
+    <?php }?>
                                     <div class="solutions-btn" id="financial-sector-btn">
-                                        <a class="button-override" href="markets/financial-services/index.html">Learn
+                                        <?php
+$url="javascript:void(0);";
+if($financeData['url']!=""){$url=$financeData['url'];} ?>
+                                        <a class="button-override" href="<?php echo $url;?>">Learn
                                             More</a>
                                     </div>
                                 </div>
@@ -926,8 +999,19 @@ if($phishingWrapper[0]['sub_heading']){
                         </div>
                         <div class="col-sm-12 solution government-sector">
                             <div class="gov-sector-content sector-content">
+                                <?php if($govtData['heading']!=""){
+            ?><h3><?php echo $govtData['heading']; ?></h3><?php
+                                }else{ ?>
                                 <h3>Government</h3>
-                                <div class="solution-content-fadein">
+    <?php } ?>
+    <div class="solution-content-fadein">
+        <?php if($govtData['info']!=""){
+            ?>
+            <p id="gov-sector-blurb" class="solutions-blurb">
+            <?php echo $govtData['info'];?>
+            </p>
+            <?php
+        }else{ ?>
                                     <p id="gov-sector-blurb" class="solutions-blurb">
                                         While adversaries increasingly target critical national infrastructure,
                                         responsibility for intelligence collection is shared across DoD, DHS and the
@@ -936,8 +1020,15 @@ if($phishingWrapper[0]['sub_heading']){
                                         Government customers around the world rely on Norse to bridge the gaps and
                                         deliver insights from difficult-to-penetrate geographies and darknets.
                                     </p>
+    <?php } ?>
                                     <div class="solutions-btn" id="gov-sector-btn">
-                                        <a class="button-override" href="markets/government/index.html">Learn More</a>
+                                        <?php
+                                        $url="javascript:void(0);";
+                                        if($govtData['url']!=""){
+                                         $url=$govtData['url'];
+                                        }
+                                        ?>
+                                        <a class="button-override" href="<?php echo $url;?>">Learn More</a>
                                     </div>
                                 </div>
                             </div>
@@ -946,17 +1037,35 @@ if($phishingWrapper[0]['sub_heading']){
                 </div>
                 <div class="col-sm-6 single-vertical solution technology-sector" id="tech">
                     <div class="tech-sector-content sector-content">
+                        <?php if($techData['heading']!=""){
+           ?><h3><?php echo $techData['heading'];?></h3><?php
+                        }else{ ?>
                         <h3>Technology</h3>
-                        <div class="solution-content-fadein">
-                            <p id="tech-sector-blurb" class="solutions-blurb">
+    <?php }?>
+    <div class="solution-content-fadein">
+        <?php if($techData['info']!=""){
+            ?>
+            <p id="tech-sector-blurb" class="solutions-blurb">
+                <?php echo $techData['info'];?>
+            </p>
+            <?php
+        }else{ ?>
+        <p id="tech-sector-blurb" class="solutions-blurb">
                                 Fast-growing tech companies are especially vulnerable to attack. Rapidly-scaling
                                 infrastructures are excruciatingly difficult to grow securely, and hackers routinely
                                 exploit those gaps as innovators struggle to focus on building their businesses.
                                 Billion-dollar startups rely on Norse to pre-emptively block the advanced threats that
                                 other systems miss.
                             </p>
+    <?php } ?>
                             <div class="solutions-btn" id="tech-sector-btn">
-                                <a class="button-override" href="#">Learn More</a>
+                                <?php
+                                $url="javascript:void(0);";
+                                if($techData['url']!=""){
+                                    $url=$techData['url'];
+                                }
+                                ?>
+                                <a class="button-override" href="<?php echo $url;?>">Learn More</a>
                             </div>
                         </div>
 
@@ -974,8 +1083,16 @@ if($phishingWrapper[0]['sub_heading']){
         <div class="container-fluid">
             <div class="col-sm-7">
                 <div class="news-col news">
+                    <?php if($leftArea['heading']!=""){
+                        ?>
+                        <h2><?php echo $leftArea; ?></h2>
+                        <?php
+                    }else{ ?>
                     <h2>News</h2>
-                    <p><span class="date-time">01.20</span><a href="http://www.technewsworld.com/story/83005.html?rss=1"
+    <?php }if($leftArea['content']!=""){
+            echo $leftArea['content'];
+                    }else{ ?>
+    <p><span class="date-time">01.20</span><a href="http://www.technewsworld.com/story/83005.html?rss=1"
                                                               target="_blank">Ukraine Mounts Investigation of Kiev
                             Airport Cyberattack</a></p>
                     <p><span class="date-time">01.19</span><a
@@ -1012,12 +1129,21 @@ if($phishingWrapper[0]['sub_heading']){
                                                               target="_blank">&lsquo;Only 49pc CEOs prepare for a future
                             cyber event&rsquo;</a></p>
                     <a href="#" class="more-news">More News</a>
+    <?php } ?>
                 </div>
             </div>
             <div class="col-sm-5">
                 <div class="news-col blog">
+                    <?php if ($rightArea['heading']!=""){
+?><h2><?php echo $rightArea['heading'];?></h2><?php
+                    }else{ ?>
                     <h2>Blog</h2>
-                    <div id="blog-feed"></div>
+    <?php } ?>
+    <div id="blog-feed">
+        <?php if($rightArea['content']){
+            echo $rightArea['content'];
+        } ?>
+    </div>
                 </div>
             </div>
         </div>
@@ -1037,37 +1163,98 @@ if($phishingWrapper[0]['sub_heading']){
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-holder">
-                        <script src="http://app-sj01.marketo.com/js/forms2/js/forms2.min.js"></script>
-                        <form id="mktoForm_374"></form>
-                        <script>MktoForms2.loadForm("//app-sj01.marketo.com", "681-ONL-293", 374, function (form) {
-                                form.onSuccess(function (values, followUpUrl) {
-                                    location.href = "";
-                                    //return false to prevent the submission handler continuing with its own processing
-                                    return false;
-                                });
-                            });
-                            MktoForms2.whenReady(function () {
-                                jQuery('.mktoFormCol').each(function () {
-                                    var input_id = jQuery(this).find('input, select, textarea').attr('id');
-                                    if (input_id != '') {
-                                        jQuery(this).addClass(input_id);
-                                    }
-                                    ;
-                                });
-                                jQuery('.requestType').change(function () {
-                                    jQuery('.mktoFormCol').each(function () {
-                                        var input_id = jQuery(this).find('input, select, textarea').attr('id');
-                                        if (input_id != '') {
-                                            jQuery(this).addClass(input_id);
-                                        }
-                                        ;
-                                    });
-                                });
-                            });
-                        </script>
+                        <?php
+                        echo $contactUs;
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
+<?php
+if($leftSection['back_image']){
+    ?>
+    <input type="hidden" id="leftSectionImageBack" name="leftSectionImageBack" value="<?php echo $leftSection['back_image'];?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#leftSectionImageBack').val();
+            $('.appliance').css('background','url('+imagUrl+') center top no-repeat #292D38');
+        });
+    </script>
+    <?php
+}
+if($leftSection['fornt_image']){
+    ?>
+    <input type="hidden" id="leftSectionImageFront" name="leftSectionImageBack" value="<?php echo $leftSection['fornt_image'];?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#leftSectionImageFront').val();
+            $('.appliance-content').css('background','url('+imagUrl+') center top no-repeat');
+        });
+    </script>
+    <?php
+}
+?>
+
+
+
+<?php
+if($rightSection['back_image']){
+    ?>
+    <input type="hidden" id="rightSectionImageBack" name="leftSectionImageBack" value="<?php echo $rightSection['back_image'];?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#rightSectionImageBack').val();
+            $('.intelligence-service').css('background','url('+imagUrl+') center top no-repeat #1D386D');
+        });
+    </script>
+    <?php
+}
+if($rightSection['fornt_image']){
+    ?>
+    <input type="hidden" id="rightSectionImageFront" name="leftSectionImageBack" value="<?php echo $rightSection['fornt_image'];?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#rightSectionImageFront').val();
+            $('.intelligence-service-content').css('background','url('+imagUrl+') center top no-repeat');
+        });
+    </script>
+    <?php
+}
+if($financeData['image']){
+    ?>
+    <input type="hidden" id="financeImage" value="<?php echo $financeData['image']; ?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#financeImage').val();
+            $('.financial-sector').css('background','url('+imagUrl+') center center no-repeat');
+        });
+    </script>
+    <?php
+}
+if($govtData['image']){
+    ?>
+    <input type="hidden" id="govtImage" value="<?php echo $govtData['image']; ?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#govtImage').val();
+            $('.government-sector').css('background','url('+imagUrl+') right bottom no-repeat rgb(32, 35, 43)');
+        });
+    </script>
+    <?php
+}
+if($techData['image']){
+    ?>
+    <input type="hidden" id="techImage" value="<?php echo $techData['image']; ?>">
+    <script>
+        $(document).ready(function () {
+            var imagUrl=$('#techImage').val();
+            $('.technology-sector').css('background','url('+imagUrl+') center center no-repeat');
+        });
+    </script>
+    <?php
+}
+?>
+
+
 
        <?php get_footer('homepage'); ?>

@@ -1550,7 +1550,7 @@ footer {
 		padding-top: 50%;
 	}
 	#news .news p:nth-last-child(-n+4) {
-		display: none;
+		/*display: none;*/
 	}
 	#news .blog .blog-items .media:nth-last-child(-n+1) {
 		display: none;
